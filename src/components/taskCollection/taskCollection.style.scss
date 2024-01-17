@@ -1,0 +1,21 @@
+.task_collection_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(135deg, lightyellow, rgba(252, 252, 110, 0.956));
+    box-shadow: 8px 8px 8px lightgray;
+    border-bottom: 0.5px solid darkgray;
+    border-right: 0.5px solid darkgray;
+    padding: 20px;
+    border-radius: 5px;
+    height: 500px;
+
+    .task_card{
+        border: solid 1px lightgray;
+        border-radius: 5px;
+        text-align: center;
+        height: 20px;
+        margin: 10px;
+        padding: 2px 5px;
+    }
+}
