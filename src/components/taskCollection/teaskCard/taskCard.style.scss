@@ -1,0 +1,11 @@
+.task_card{
+    text-align: center;
+    height: 20px;
+    margin: 10px;
+    padding: 2px 5px;
+
+    &:hover{
+        cursor: pointer;
+        font-size: 20px;
+    }
+}

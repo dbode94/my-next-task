@@ -1,0 +1,11 @@
+.input_field{
+    border: none;
+    border-bottom: 0.1px solid lightgrey;
+    text-align: center;
+    background-color: transparent;
+    margin: 10px auto;
+
+    &:focus{
+        outline: none;
+    }
+}
