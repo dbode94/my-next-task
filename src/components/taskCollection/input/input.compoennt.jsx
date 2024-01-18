@@ -1,28 +1,28 @@
-import { useState } from 'react'
 import { TasksContext } from '../../../context/tasks.context'
 import { useContext } from 'react'
 
 import './input.style.scss'
 
 const Input = () =>{
-    const [inputValue, setInputValue] = useState("")
     const { currentTasks, setCurrentTasks} = useContext(TasksContext)
 
-    const onChangeHandler = (event) =>{
-        setInputValue(event.target.value);
-    }
-
     const onSubmitHandler = (event) =>{
-        if(inputValue !== ''){
+        event.preventDefault();
+        
+        const input = document.getElementById('input_task');
+
+        if(input.value !== ''){
             const dateSnap = new Date();
             const creationDate = dateSnap.getMonth()+1 + '/' + dateSnap.getDay() + '/' + dateSnap.getFullYear();
-            setCurrentTasks([...currentTasks, {id: currentTasks.length, text: inputValue, open:true, date: creationDate}])
+            setCurrentTasks([...currentTasks, {id: currentTasks.length, text: input.value, open:true, date: creationDate}])
         }
+        
+        input.value = '';
     }
 
-    return(
+    console.log(currentTasks.map((task) => task));    return(
         <form action='' onSubmit={onSubmitHandler} method="get">
-            <input type="text" placeholder="+ New Task" className="input_field" onChange={onChangeHandler}/>
+            <input type="text" placeholder="+ New Task" className="input_field" id='input_task'/>
         </form>
     )
 }

@@ -7,7 +7,8 @@ export const TasksContext = createContext({
 })
 
 export const TasksProvider = ({children}) =>{
-    const [currentTasks, setCurrentTasks] = useState([...TASK_COLLECTION])
-    const value = [currentTasks,setCurrentTasks];
+    const [currentTasks, setCurrentTasks] = useState([])
+    const value = {currentTasks,setCurrentTasks};
+    
     return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>
 }

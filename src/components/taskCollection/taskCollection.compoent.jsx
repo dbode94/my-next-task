@@ -1,4 +1,3 @@
-import TASK_COLLECTION from "../../TASKS_LIST";
 import TaskCard from "./teaskCard/taskCard.compoentn";
 import Input from "./input/input.compoennt";
 
@@ -14,7 +13,6 @@ const clickHandler = (event) =>{
 const TaskCollection = () =>{
 
     const {currentTasks} = useContext(TasksContext);
-    console.log(currentTasks);
 
     return(
         <div className="task_collection_container">
@@ -24,7 +22,7 @@ const TaskCollection = () =>{
             <Input/>
 
             {
-                TASK_COLLECTION.map((task,index) => {
+                currentTasks.map((task,index) => {
                     return task.open ? <TaskCard task={task} key={index} clickHandler={clickHandler}/> : null
                 })
             }
