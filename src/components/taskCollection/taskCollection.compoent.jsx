@@ -6,9 +6,6 @@ import { TasksContext } from "../../context/tasks.context";
 
 import './taskCollection.style.scss';
 
-const clickHandler = (event) =>{
-    console.log(event.target);
-}
 
 const TaskCollection = () =>{
 
@@ -23,7 +20,7 @@ const TaskCollection = () =>{
 
             {
                 currentTasks.map((task,index) => {
-                    return task.open ? <TaskCard task={task} key={index} clickHandler={clickHandler}/> : null
+                    return task.open ? <TaskCard task={task} key={index} /> : null
                 })
             }
         </div>
