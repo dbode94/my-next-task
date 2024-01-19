@@ -7,12 +7,16 @@ import './taskCard.style.scss'
 
 const TaskCard = ({task}) =>{
 
-    const {text, id, open, date} = task;
-    const { currentTasks, setCurrentTasks} = useContext(TasksContext)
+    const {text, id, date} = task;
+    const { currentTasks, setCurrentTasks,completedTasks, setCompletedTasks} = useContext(TasksContext)
 
     const clickHandler = () =>{
-        const newCurrentTasks = currentTasks.map((task) => task.id !== id ? task : {...task, open: false});
+        const newCompletedTasks = currentTasks.filter((task) => task.id === id);
+        const newCurrentTasks = currentTasks.filter((task) => task.id !== id);
+        
         setCurrentTasks(newCurrentTasks);
+        setCompletedTasks([...completedTasks, ...newCompletedTasks]);
+        
     }
 
     return(

@@ -1,4 +1,4 @@
-import TaskCollection from './components/taskCollection/taskCollection.compoent';
+import TaskCollection from './components/taskCollection/taskCollection.component';
 
 import './App.css';
 

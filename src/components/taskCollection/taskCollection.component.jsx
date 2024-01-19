@@ -1,4 +1,4 @@
-import TaskCard from "./teaskCard/taskCard.compoentn";
+import TaskCard from "./taskCard/taskCard.compoentn";
 import Input from "./input/input.compoennt";
 
 import { useContext } from "react";
