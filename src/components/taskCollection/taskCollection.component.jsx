@@ -2,7 +2,7 @@ import TaskCard from "./taskCard/taskCard.component";
 
 import './taskCollection.style.scss';
 
-const COLLECTION_TYPES ={
+const COLLECTION_TYPES = {
     open: "task_collection_container",
     completed: "completed_task_collection_style"
 }
@@ -15,7 +15,7 @@ const TaskCollection = ({tasksList, collectionType}) =>{
         <div className={collectionType !== undefined? COLLECTION_TYPES[collectionType] : COLLECTION_TYPES['open']}>
             {
                 tasksList.map((task,index) => {
-                    return task.open ? <TaskCard task={task} key={index} /> : null
+                    return <TaskCard task={task} key={index} />
                 })
             }
         </div>
