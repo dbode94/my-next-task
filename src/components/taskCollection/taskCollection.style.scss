@@ -2,18 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: linear-gradient(135deg, lightyellow, rgba(252, 252, 110, 0.956));
-    box-shadow: 8px 8px 8px lightgray;
-    border-bottom: 0.5px solid darkgray;
-    border-right: 0.5px solid darkgray;
-    padding: 20px;
-    border-radius: 5px;
-    padding-bottom: 20%;
-    height: auto;
-    width: 400px;
     margin: 0;
 
-    h1{
-        text-decoration: underline;
+    & .completed_task_collection_style{
+        font-size: 300px;
+        color: gray;
     }
 }

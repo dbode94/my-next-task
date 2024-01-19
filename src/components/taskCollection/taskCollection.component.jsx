@@ -1,25 +1,20 @@
-import TaskCard from "./taskCard/taskCard.compoentn";
-import Input from "./input/input.compoennt";
-
-import { useContext } from "react";
-import { TasksContext } from "../../context/tasks.context";
+import TaskCard from "./taskCard/taskCard.component";
 
 import './taskCollection.style.scss';
 
+const COLLECTION_TYPES ={
+    open: "task_collection_container",
+    completed: "completed_task_collection_style"
+}
 
-const TaskCollection = () =>{
+const TaskCollection = ({tasksList, collectionType}) =>{
 
-    const {currentTasks} = useContext(TasksContext);
+    console.log(COLLECTION_TYPES[collectionType])
 
     return(
-        <div className="task_collection_container">
-
-            <h1>To do:</h1>
-
-            <Input/>
-
+        <div className={collectionType !== undefined? COLLECTION_TYPES[collectionType] : COLLECTION_TYPES['open']}>
             {
-                currentTasks.map((task,index) => {
+                tasksList.map((task,index) => {
                     return task.open ? <TaskCard task={task} key={index} /> : null
                 })
             }

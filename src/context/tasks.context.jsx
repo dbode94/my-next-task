@@ -1,5 +1,4 @@
-import { createContext, useState, useEffect } from "react";
-import TASK_COLLECTION from "../TASKS_LIST";
+import { createContext, useState} from "react";
 
 export const TasksContext = createContext({
     currentTasks: [],
