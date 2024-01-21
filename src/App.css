@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+
+  font-size: large;
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  background-image: linear-gradient(135deg, lightyellow, rgba(252, 252, 110, 0.956));
+  box-shadow: 8px 8px 8px lightgray;
+  border-bottom: 0.5px solid darkgray;
+  border-right: 0.5px solid darkgray;
+  padding: 20px;
+  border-radius: 5px;
+  padding-bottom: 20%;
+  height: auto;
+  width: 400px;
+}
+
+h1,h4{
+  text-decoration: underline;
+}
+
+h4{
+  color: gray;
+  margin-bottom: 0px;
+}
