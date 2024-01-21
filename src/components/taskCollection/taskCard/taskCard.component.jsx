@@ -16,19 +16,18 @@ const TaskCard = ({task}) =>{
         
         updateTasksContext(newCurrentTasks, newCompletedTasks);
     }
-
-    const updateTasksContext = (newCurrentTasks, newCompletedTasks) =>{
-        setCurrentTasks(newCurrentTasks);
-        setCompletedTasks(newCompletedTasks);
-    }
-
+    
     const completedTasksClickHandler = () =>{
         const newCompletedTasks = completedTasks.filter((task) => task.id !== id);
         const newCurrentTasks = [...currentTasks, {...completedTasks.filter((task) => task.id === id)[0], open:true}];
         
         updateTasksContext(newCurrentTasks, newCompletedTasks)
     }
-
+    
+    const updateTasksContext = (newCurrentTasks, newCompletedTasks) =>{
+        setCurrentTasks(newCurrentTasks);
+        setCompletedTasks(newCompletedTasks);
+    }
 
 
     return(
