@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
 import { TasksProvider } from './context/tasks.context';
 
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <TasksProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </TasksProvider>
   </React.StrictMode>
 );
