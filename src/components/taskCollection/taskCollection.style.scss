@@ -4,7 +4,11 @@
     align-items: center;
     margin: 0;
 
-    & .completed_task_collection_style{
-        color: gray;
+    & .task_item{
+        display: flex;
     }
+}
+
+.completed_task_collection_style{
+    color: gray;
 }

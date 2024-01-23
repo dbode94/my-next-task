@@ -32,7 +32,7 @@ const TaskCard = ({task}) =>{
 
     return(
         <div className="task_card" onClick={open? openTasksClickHandler : completedTasksClickHandler }>
-            {text + ' ' + date }
+            <div>{text + ' ' + date }</div>
         </div>
     )
 }

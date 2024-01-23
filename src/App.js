@@ -14,10 +14,10 @@ function App() {
     <div className="App">
       <h1>To do:</h1>
       <Input/>
-     <TaskCollection tasksList={currentTasks}/>
+      <TaskCollection tasksList={currentTasks}/>
 
-     <h4>Completed tasks:</h4>
-     <TaskCollection tasksList={completedTasks} collectionType='completed'/>
+      <h4>Completed tasks:</h4>
+      <TaskCollection tasksList={completedTasks} collectionType='completed'/>
     </div>
   );
 }

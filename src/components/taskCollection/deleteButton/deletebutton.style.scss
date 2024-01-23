@@ -1,0 +1,11 @@
+.delete_button{
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 5px;
+    color: gray;
+    
+    &:hover{
+        background-color: lightgray;
+    }
+}

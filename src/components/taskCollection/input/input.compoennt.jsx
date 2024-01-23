@@ -13,14 +13,14 @@ const Input = () =>{
 
         if(input.value !== ''){
             const dateSnap = new Date();
-            const creationDate = dateSnap.getMonth()+1 + '/' + dateSnap.getDay() + '/' + dateSnap.getFullYear();
+            const creationDate = dateSnap.getMonth()+1 + '/' + dateSnap.getDate() + '/' + dateSnap.getFullYear();
             setCurrentTasks([...currentTasks, {id: currentTasks.length, text: input.value, open:true, date: creationDate}])
         }
         
         input.value = '';
     }
 
-    console.log(currentTasks.map((task) => task));    return(
+    return(
         <form action='' onSubmit={onSubmitHandler} method="get">
             <input type="text" placeholder="+ New Task" className="input_field" id='input_task'/>
         </form>
