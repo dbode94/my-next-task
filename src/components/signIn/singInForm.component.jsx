@@ -1,4 +1,5 @@
-//TODO: ADD the functionalities of loging in and registering
+//TODO: Update Context with handleSubmit
+//TODO: Change handleSubmit to use FireBase
 
 import { useState } from 'react';
 
@@ -18,17 +19,15 @@ const SingInForm = () =>{
     const handleSubmit = (event) => {
         event.preventDefault();
         resetValues();
-        console.log(formValues);
     }
 
     const resetValues = () =>{
         setFormValues(defaultForm)
-
     }
 
     const changeHandler = (event) =>{
-        const {type , value} = event.target; 
-        setFormValues({...formValues, [type]: value});
+        const {name , value} = event.target; 
+        setFormValues({...formValues, [name]: value});
     }
 
     return(
