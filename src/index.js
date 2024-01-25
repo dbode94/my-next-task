@@ -6,15 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
 import { TasksProvider } from './context/tasks.context';
+import { PrerenceProvider } from './context/preference.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <TasksProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </TasksProvider>
+    <PrerenceProvider>
+      <TasksProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </TasksProvider>
+    </PrerenceProvider>
   </React.StrictMode>
 );
 
