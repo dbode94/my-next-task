@@ -2,11 +2,13 @@
 
 
 import { Fragment, useState, useEffect, useContext } from 'react';
-import { Outlet, Link } from 'react-router-dom';
-import { PreferenceContext } from '../context/preference.context';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/user.context';
 
 import { ReactComponent as LightTheme } from '../assets/sun-svgrepo-com.svg';
 import { ReactComponent as DarkTheme } from '../assets/moon-svgrepo-com.svg';
+
+import { signUserOut } from '../utils/firebase.utils';
 
 import logo from '../assets/icons8-note-96.png'
 import './navigation.style.scss';
@@ -14,8 +16,9 @@ import './navigation.style.scss';
 
 const Navigation = () =>{
 
-    const {IslightTheme, setIsLightTheme} = useContext(PreferenceContext);
-
+    const userIsLogged = true;
+    const navigate = useNavigate();
+    const {IslightTheme, setIsLightTheme} = useContext(UserContext);
     const [isLargeScreen, setIsLargeScreen] = useState(window.matchMedia("(min-width: 650px)").matches);
 
     const changeHandler = (event) =>{
@@ -28,7 +31,7 @@ const Navigation = () =>{
         document.body.classList.add('lightTheme_style');
     }, [])
 
-    const clickHandler = () =>{
+    const themeHandler = () =>{
         const newIsLightTheme = !IslightTheme;
 
         setIsLightTheme(newIsLightTheme);
@@ -41,6 +44,13 @@ const Navigation = () =>{
             document.body.classList.remove('lightTheme_style')
             document.body.classList.add('darkTheme_style');
         }
+    }
+
+    const singoutHandler = () =>{
+        signUserOut()
+            .then(console.log('Logged out succesfully'))
+            .catch((err) => console.log(err.message));
+        navigate('/');
     }
 
     return(
@@ -57,9 +67,11 @@ const Navigation = () =>{
                 </div>
                 <div className='logAndTheme_Container'>
                     {
-                        IslightTheme? <LightTheme onClick={clickHandler}/> : <DarkTheme onClick={clickHandler}/>
+                        IslightTheme? <LightTheme onClick={themeHandler}/> : <DarkTheme onClick={themeHandler}/>
                     }
-                    <Link to='/'> <button className='login_button' >Log in / Register</button> </Link>
+                    {
+                        userIsLogged? <button className='log_button' onClick={singoutHandler}>Log out</button> : <button className='log_button'>Log in / Register</button>    
+                    }                 
                 </div>
             </div>
             <Outlet/>

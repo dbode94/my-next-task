@@ -1,10 +1,15 @@
-import { useState } from 'react';
+//TODO: Update Context with handleSubmit
+//TODO: Change handleSubmit to use FireBase
+
+import { useState, useContext } from 'react';
+import { UserContext } from '../../context/user.context';
+import { useNavigate } from 'react-router-dom';
+import { registerNewUser } from '../../utils/firebase.utils';
 
 import './singUpForm.style.scss'
 
 const defaultForm = {
-    firstName: '',
-    lastName: '',
+    displayName: '',
     email: '',
     password: ''
 }
@@ -12,11 +17,21 @@ const defaultForm = {
 const SingUpForm = () =>{
 
     const [formValues, setFormValues] = useState(defaultForm);
-    const {firstName, lastName, email, password} = formValues;
+    const {displayName, email, password} = formValues;
+    const {setCurrentUser, IslightTheme, setCurrentUserId} = useContext(UserContext);
+    const navigate = useNavigate()
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(formValues)
+
+        const user = await registerNewUser(formValues.displayName, formValues.email, formValues.password, {IslightTheme})
+
+        if(user){
+            setCurrentUser(displayName);
+            setCurrentUserId(user.uid)
+            navigate('/tasks')
+        }
+
         resetValues();
     }
 
@@ -34,13 +49,11 @@ const SingUpForm = () =>{
             <form className="singUp_form" onSubmit={handleSubmit}>
                 <h3>You don't?</h3>
                 <h5>Sing Up:</h5>
-                <input type="text" name="firstName" placeholder='First Name' onChange={changeHandler} required value={firstName}/>
-                <input type="text" name="lastName" placeholder='Last Name'  onChange={changeHandler} required value={lastName}/>
+                <input type="text" name="displayName" placeholder='Display Name' onChange={changeHandler} required value={displayName}/>
                 <input type="email" name="email" placeholder='email' onChange={changeHandler} required value={email}/>   
                 <input type="password" name="password" placeholder='Password' onChange={changeHandler} required value={password}/>
                 <br />
-                <button>Register</button>
-                <button>Register with Google</button>
+                <button type='submit' >Register</button>
             </form>
         </div>
     )
