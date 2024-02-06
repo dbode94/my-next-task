@@ -36,19 +36,21 @@ const googleProvider = new GoogleAuthProvider();
 
 
 //Helper function for registering using email and password 
-export const registerNewUser =  async (displayName, email, password, additionalInformatinon = {}) =>{
-  createUserWithEmailAndPassword(auth, email,password)
+export const registerNewUser = (displayName, email, password, additionalInformatinon = {}) =>{
+  return createUserWithEmailAndPassword(auth, email,password)
     .then(({user}) =>{
-      console.log('registered user', user.uid)
-      createUserDocument(user.uid, displayName, email, additionalInformatinon)
-        .then(() => user)
+      console.log('creating user doc')
+      return createUserDocument(user.uid, displayName, email, additionalInformatinon)
+        .then(() =>{
+          console.log('returning user', user);
+          return user;
+        })
     })
     .catch((err) => console.log('error handled', err.message))
 }
 
 //stores the user related data into the data base
 const createUserDocument = async (userID, displayName, email, additionalInformatinon = {}) => {
-  console.log('creating the document')
   const newUserDocRef = doc(db, 'users', userID);
   const newUserDocSnapshot = await getDoc(newUserDocRef);
 
@@ -59,18 +61,20 @@ const createUserDocument = async (userID, displayName, email, additionalInformat
     }catch(err){
       console.log('error while creating user document', err.message)
     }
-  } else 
-  return newUserDocRef;
+  }
 }
 
 //Helper function for signing in with email and password
-export const regularSignIn = (email, password) =>{
-  return signInWithEmailAndPassword(auth, email, password)
-}
+export const regularSignIn = async (email, password) => await signInWithEmailAndPassword(auth, email, password);
 
 //Helper function for singing in the user using Google Popout
 export const singInWithGooglePopOut = async (additionalinformation = {}) =>{
   signInWithPopup(auth, googleProvider)
+    .then( async ({user}) =>{
+      await createUserDocument(user.uid, user.displayName, user.email, additionalinformation);
+      return user;
+    })
+    .catch((err) => console.log(err.message))
 }
 
 //helper function for loging out the user

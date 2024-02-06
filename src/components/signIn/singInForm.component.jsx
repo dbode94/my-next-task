@@ -20,7 +20,7 @@ const defaultForm = {
 const SingInForm = () => {
 
     const [formValues, setFormValues] = useState(defaultForm);
-    const {currentUser, setCurrentUser} = useContext(UserContext);
+    const {setCurrentUser, setCurrentUserId, IslightTheme, setIsLightTheme} = useContext(UserContext);
     const {email, password} = formValues;
     const navigate = useNavigate();
 
@@ -28,10 +28,10 @@ const SingInForm = () => {
         event.preventDefault();
 
         regularSignIn(formValues.email,formValues.password)
-            .then((cred) => {
-                console.log(cred.user)
-                // setCurrentUser()
-                navigate('tasks')
+            .then((user) => {
+                setCurrentUser(user.displayName)
+                setCurrentUserId(user.uid);
+                navigate('/tasks')
             })
             .catch(() => alert('user or password not found'));
 
@@ -47,12 +47,14 @@ const SingInForm = () => {
         setFormValues({...formValues, [name]: value});
     }
 
-    const  googleSignInHandler = () =>{
-       singInWithGooglePopOut()
-        .then((result) =>{
-            console.log(result.user)
-        })
-        .catch((err) => console.log(err))
+    const  googleSignInHandler = async () =>{
+        singInWithGooglePopOut({IslightTheme})
+            .then((user) => {
+                setCurrentUser(user.displayName)
+                setCurrentUserId(user.uid);
+                console.log('inside the if')
+                navigate('/tasks');
+            })
     }
 
     return(
