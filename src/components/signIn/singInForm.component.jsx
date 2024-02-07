@@ -48,13 +48,15 @@ const SingInForm = () => {
     }
 
     const  googleSignInHandler = async () =>{
-        singInWithGooglePopOut({IslightTheme})
-            .then((user) => {
-                setCurrentUser(user.displayName)
-                setCurrentUserId(user.uid);
-                console.log('inside the if')
-                navigate('/tasks');
-            })
+        
+        const user = await singInWithGooglePopOut({IslightTheme});
+
+        if(user){
+            setCurrentUser(user.displayName)
+            setCurrentUserId(user.uid);
+            console.log('inside the if')
+            navigate('/tasks');
+        }
     }
 
     return(

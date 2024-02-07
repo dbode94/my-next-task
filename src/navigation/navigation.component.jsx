@@ -17,9 +17,8 @@ import './navigation.style.scss';
 
 const Navigation = () =>{
 
-    const userIsLogged = true;
     const navigate = useNavigate();
-    const {IslightTheme, setIsLightTheme} = useContext(UserContext);
+    const {currentUser, setCurrentUser,IslightTheme, setIsLightTheme} = useContext(UserContext);
     const [isLargeScreen, setIsLargeScreen] = useState(window.matchMedia("(min-width: 650px)").matches);
 
     const changeHandler = (event) =>{
@@ -49,7 +48,9 @@ const Navigation = () =>{
 
     const singoutHandler = () =>{
         signUserOut()
-            .then(console.log('Logged out succesfully'))
+            .then( () =>{
+                setCurrentUser('');              
+            })
             .catch((err) => console.log(err.message));
         navigate('/');
     }
@@ -71,7 +72,7 @@ const Navigation = () =>{
                         IslightTheme? <LightTheme onClick={themeHandler}/> : <DarkTheme onClick={themeHandler}/>
                     }
                     {
-                        userIsLogged? <button className='log_button' onClick={singoutHandler}>Log out</button> : <button className='log_button'>Log in / Register</button>    
+                        currentUser? <button className='log_button' onClick={singoutHandler}>Log out</button> : null
                     }                 
                 </div>
             </div>

@@ -38,13 +38,10 @@ const googleProvider = new GoogleAuthProvider();
 //Helper function for registering using email and password 
 export const registerNewUser = (displayName, email, password, additionalInformatinon = {}) =>{
   return createUserWithEmailAndPassword(auth, email,password)
-    .then(({user}) =>{
-      console.log('creating user doc')
-      return createUserDocument(user.uid, displayName, email, additionalInformatinon)
-        .then(() =>{
-          console.log('returning user', user);
-          return user;
-        })
+    .then(async ({user}) =>{
+      await createUserDocument(user.uid, displayName, email, additionalInformatinon)
+      console.log('sending user')
+      return user;
     })
     .catch((err) => console.log('error handled', err.message))
 }
@@ -55,6 +52,7 @@ const createUserDocument = async (userID, displayName, email, additionalInformat
   const newUserDocSnapshot = await getDoc(newUserDocRef);
 
   if(!newUserDocSnapshot.exists()){
+    console.log('creating user doc')
     const createdAt = new Date();
     try{  
       await setDoc(newUserDocRef, {displayName, email, createdAt, ...additionalInformatinon})
@@ -69,7 +67,7 @@ export const regularSignIn = async (email, password) => await signInWithEmailAnd
 
 //Helper function for singing in the user using Google Popout
 export const singInWithGooglePopOut = async (additionalinformation = {}) =>{
-  signInWithPopup(auth, googleProvider)
+  return signInWithPopup(auth, googleProvider)
     .then( async ({user}) =>{
       await createUserDocument(user.uid, user.displayName, user.email, additionalinformation);
       return user;

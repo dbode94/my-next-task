@@ -24,10 +24,8 @@ const SingUpForm = () =>{
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        //TODO: BUG -> it is not waiting for the result, it just keeps rolling - everything on firebase utils seems to work
-
         const user = await registerNewUser(formValues.displayName, formValues.email, formValues.password, {IslightTheme});
-        console.log('I should have the user')
+
         if(user){
             setCurrentUser(displayName);
             setCurrentUserId(user.uid)
