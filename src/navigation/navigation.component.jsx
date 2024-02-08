@@ -55,6 +55,10 @@ const Navigation = () =>{
         navigate('/');
     }
 
+    const options = [
+        <div className='contacts_container'>Contacts</div>
+    ]
+
     return(
         <Fragment>
             <div className='navigation_bar'>
@@ -65,7 +69,9 @@ const Navigation = () =>{
                     }
                 </div>
                 <div className='option_container'>
-                    <div className='contacts_container'>Contacts</div>
+                    {
+                        currentUser? options : null
+                    }
                 </div>
                 <div className='logAndTheme_Container'>
                     {

@@ -1,6 +1,4 @@
-.tasks_container {
-    text-align: center;
-  
+.note_container{
     font-size: large;
     font-family: "Caveat", cursive;
     font-optical-sizing: auto;
@@ -16,15 +14,4 @@
     padding-bottom: 20%;
     height: 100%;
     width: 400px;
-
-    & h1,h4{
-        text-decoration: underline;
-    }
-      
-    & h4{
-    color: gray;
-    margin-bottom: 0px;
-    }
 }
-  
-  

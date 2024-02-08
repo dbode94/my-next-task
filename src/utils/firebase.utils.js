@@ -40,7 +40,6 @@ export const registerNewUser = (displayName, email, password, additionalInformat
   return createUserWithEmailAndPassword(auth, email,password)
     .then(async ({user}) =>{
       await createUserDocument(user.uid, displayName, email, additionalInformatinon)
-      console.log('sending user')
       return user;
     })
     .catch((err) => console.log('error handled', err.message))
@@ -52,7 +51,6 @@ const createUserDocument = async (userID, displayName, email, additionalInformat
   const newUserDocSnapshot = await getDoc(newUserDocRef);
 
   if(!newUserDocSnapshot.exists()){
-    console.log('creating user doc')
     const createdAt = new Date();
     try{  
       await setDoc(newUserDocRef, {displayName, email, createdAt, ...additionalInformatinon})

@@ -5,18 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
-import { TasksProvider } from './context/tasks.context';
+import { NotesProvider } from './context/notes.context';
 import { UserProvider } from './context/user.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <UserProvider>
-      <TasksProvider>
+      <NotesProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </TasksProvider>
+      </NotesProvider>
     </UserProvider>
   </React.StrictMode>
 );

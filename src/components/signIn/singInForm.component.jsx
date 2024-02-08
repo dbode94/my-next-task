@@ -24,14 +24,15 @@ const SingInForm = () => {
     const {email, password} = formValues;
     const navigate = useNavigate();
 
-    const submitHandler = async (event) => {
+    const submitHandler = (event) => {
         event.preventDefault();
 
         regularSignIn(formValues.email,formValues.password)
             .then((user) => {
                 setCurrentUser(user.displayName)
                 setCurrentUserId(user.uid);
-                navigate('/tasks')
+                //TODO: Get the preference from the fireStore, it might be a returning with set preferences.
+                navigate('/dashboard')
             })
             .catch(() => alert('user or password not found'));
 
@@ -48,14 +49,14 @@ const SingInForm = () => {
     }
 
     const  googleSignInHandler = async () =>{
-        
+
         const user = await singInWithGooglePopOut({IslightTheme});
 
         if(user){
             setCurrentUser(user.displayName)
             setCurrentUserId(user.uid);
-            console.log('inside the if')
-            navigate('/tasks');
+            //TODO: Get the preference from the fireStore, it might be a returning with set preferences.
+            navigate('/dashboard');
         }
     }
 

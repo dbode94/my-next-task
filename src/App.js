@@ -1,6 +1,6 @@
 import Navigation from './navigation/navigation.component';
 import Authentication from './routes/authentication/authentication.route';
-import Tasks from './routes/tasks/tasks.route';
+import Dashboard from './routes/dashboard/dashboard.route';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Navigation/>}>
         <Route index element={<Authentication/>}/>
-        <Route path='tasks'element={<Tasks/>}/>
+        <Route path='dashboard'element={<Dashboard/>}/>
       </Route>
     </Routes>
   );

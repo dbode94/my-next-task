@@ -30,7 +30,7 @@ const SingUpForm = () =>{
             setCurrentUser(displayName);
             setCurrentUserId(user.uid)
             console.log(user.uid)
-            navigate('tasks')
+            navigate('dashboard')
         }
 
         resetValues();
