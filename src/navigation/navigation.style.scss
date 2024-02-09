@@ -11,6 +11,7 @@
     box-shadow: 0 10px 10px gray;
     border-radius: 0px 0px 10px 10px;
     background-color: #004D74;
+    z-index: 1000;
 
     & .logAndTheme_Container{
         display: flex;

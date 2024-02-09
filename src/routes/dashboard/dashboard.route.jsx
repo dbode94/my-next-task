@@ -1,12 +1,12 @@
-import { useContext } from "react"
+import Note from "../../components/note/note.component"
 
 import './dashboard.style.scss'
 
 const Dashboard = () =>{
     
     return(
-        <div className="notes_container">
-        
+        <div className="dashboard_container">
+            <Note/>
         </div>
     )
 }

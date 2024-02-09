@@ -1,11 +1,17 @@
-.notes_container {
+.dashboard_container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 70px 15px 0px 15px;
+    box-sizing: border-box;
+    overflow: auto;
+    background-color: transparent;
 }
-  
   

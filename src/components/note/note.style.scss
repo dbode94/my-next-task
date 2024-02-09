@@ -1,17 +1,56 @@
 .note_container{
-    font-size: large;
-    font-family: "Caveat", cursive;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
   
     background-image: linear-gradient(135deg, lightyellow, rgba(252, 252, 110, 0.956));
     box-shadow: 8px 8px 8px lightgray;
     border-bottom: 0.5px solid darkgray;
     border-right: 0.5px solid darkgray;
-    padding: 20px;
+    padding: 2px 2px 0 2px;
     border-radius: 5px;
-    padding-bottom: 20%;
-    height: 100%;
-    width: 400px;
+    min-height: 50px;
+    z-index: 1;
+    margin-bottom: 20px;
+
+    .note_bar{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        margin: 0 10px 10px 10px;
+        z-index: 1;
+        border-bottom: 0.5px solid lightgray;
+        
+        &:hover{
+            cursor: move;
+        }
+
+        & .barButtons_container{
+            display: flex;
+            gap: 5px;
+
+            & button{
+                border: none;
+                background-color: transparent;
+                color: gray;
+
+                &:hover{
+                    cursor: pointer;
+                    background-color: rgba(255, 255, 0, 0.624);
+                }
+            }
+        }
+    }
+
+    & .note_input{
+        border: none;
+        background-color: transparent;
+        font-size: large;
+        font-family: "Caveat", cursive;
+        margin-left: 5px;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        
+        &:focus{
+            outline: none;
+        }
+    }
 }
