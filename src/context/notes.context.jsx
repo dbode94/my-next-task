@@ -1,17 +1,37 @@
-//TODO: Delete if not needed thruout the app and the Notes information is only needed at the dashboard level
-
 import { createContext, useState} from "react";
 
 export const NotesContext = createContext({
     currentNotes: [],
-    SetCurrentNotes: () => null
+    setCurrentNotes: () => {},
+    addNote: () => {},
+    closeNote: () => {},
+    updateNote: () => {}
 })
 
 
-export const NotesProvider = ({children}) =>{
-    const [currentNotes, SetCurrentNotes] = useState([])
 
-    const value = {currentNotes, SetCurrentNotes};
+export const NotesProvider = ({children}) =>{
+
+    const [currentNotes, setCurrentNotes] = useState([])
+    
+    const addNote = (note) =>{
+        setCurrentNotes([...currentNotes, note]);
+    }
+
+    const updateNote = (updatedNote) => {
+        const updatedCurrentNotes = currentNotes.map((note) => note.noteId === updatedNote.noteId? {...note,...updatedNote} : note)
+        setCurrentNotes(updatedCurrentNotes);
+    }
+
+    const closeNote = (id) =>{
+        console.log('notes context id', id)
+        console.log(currentNotes);
+        const newCurrentNotes = currentNotes.filter((note) => note.noteId !== id);
+        console.log(newCurrentNotes);
+        setCurrentNotes(newCurrentNotes);
+    }
+
+    const value = {currentNotes, setCurrentNotes, addNote, closeNote, updateNote};
     
     return <NotesContext.Provider value={value}>{children}</NotesContext.Provider>
 }

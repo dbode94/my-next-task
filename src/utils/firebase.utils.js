@@ -75,3 +75,12 @@ export const singInWithGooglePopOut = async (additionalinformation = {}) =>{
 
 //helper function for loging out the user
 export const signUserOut = async () => await signOut(auth);
+
+
+//add notes to the database
+
+//load user notes from the database
+export const loadNotes = async (userId) => {
+  const notesDocRef = doc(db, 'users/notes', userId);
+  return await getDoc(notesDocRef);
+}

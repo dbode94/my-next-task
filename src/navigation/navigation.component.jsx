@@ -1,7 +1,3 @@
-//TODO: Display Log in / Register or Log out depending on log status : onClick => log off and redirect to '/'
-//TODO: Save any last changes when login out
-
-
 import { Fragment, useState, useEffect, useContext } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/user.context';

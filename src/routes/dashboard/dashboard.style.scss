@@ -7,11 +7,21 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
     align-items: flex-start;
-    padding: 70px 15px 0px 15px;
+    align-content: flex-start;
+    gap: 10px;    
+    padding: 80px 15px 0px 15px;
     box-sizing: border-box;
     overflow: auto;
     background-color: transparent;
+
+    & .addNote_button{
+        position: sticky;
+        font-size: 30px;
+        top:93%;
+        left: 97%;
+        border-radius: 50px;
+        border: none;
+    }
 }
   
