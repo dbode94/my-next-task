@@ -3,10 +3,14 @@
 import { initializeApp } from "firebase/app";
 import { 
   onSnapshot, //This is a real time listener, which requires a collection ref and the callback functon. This a the way to a have all the collection data on realtime
+  collection,
   doc,
   getDoc,
+  getFirestore,
+  getDocs,
   setDoc,
-  getFirestore
+  updateDoc,
+  deleteDoc
 } from 'firebase/firestore'
 import {
   getAuth,
@@ -28,12 +32,14 @@ const firebaseConfig = {
   measurementId: "G-3E8XCS2RJ5"
 };
 
-// Initialize Firebase
+//#region Initialize Firebase 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 const googleProvider = new GoogleAuthProvider();
+//#endregion
 
+//#region USER AUTH & PROFILE RELATED FUNCTIONS
 
 //Helper function for registering using email and password 
 export const registerNewUser = (displayName, email, password, additionalInformatinon = {}) =>{
@@ -76,11 +82,57 @@ export const singInWithGooglePopOut = async (additionalinformation = {}) =>{
 //helper function for loging out the user
 export const signUserOut = async () => await signOut(auth);
 
+//#endregion
 
-//add notes to the database
+
+
+//#region USER NOTES RELATED FUNCTIONS
 
 //load user notes from the database
 export const loadNotes = async (userId) => {
-  const notesDocRef = doc(db, 'users/notes', userId);
-  return await getDoc(notesDocRef);
+  if(userId){
+    const userNotesCollectionRef = collection(db,'users',userId,'notes');
+    const userQueryNotesSnapshot = (await getDocs(userNotesCollectionRef)).docs;
+    const userNotesDocs = userQueryNotesSnapshot.map((doc) => doc.data());
+    return userNotesDocs;
+  }
 }
+
+//add notes to the database
+export const saveNote = async (userId,userNote) =>{
+  const newNoteDocRef = doc(db, 'users',userId,'notes', userNote.noteId);
+  const newNoteDoc = await getDoc(newNoteDocRef);
+
+  if(!newNoteDoc.exists()){
+    const createdAt = new Date();
+    try{  
+      await setDoc(newNoteDocRef, {...userNote, createdAt})
+    }catch(err){
+      console.log('error while creating user document', err.message)
+    }
+  }
+}
+
+//update a note
+export const saveNoteChanges = async (userId,userNote) =>{
+  const noteDocRef = doc(db, 'users',userId,'notes', userNote.noteId);
+  try {
+    await updateDoc(noteDocRef,{...userNote})
+  } catch (error) {
+    console.log('error while saving note changes', error.message)
+  }
+}
+
+//delete a note
+
+export const deleteNote = async (userId, userNoteId) =>{
+  const noteDocRef = doc(db, 'users',userId,'notes', userNoteId);
+  
+  try {
+    await deleteDoc(noteDocRef)
+  } catch (error) {
+    console.log('error while deleting note', error.message)
+  }
+}
+
+//#endregion

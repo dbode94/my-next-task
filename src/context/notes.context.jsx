@@ -1,3 +1,5 @@
+import { loadNotes, saveNote, saveNoteChanges, deleteNote } from "../utils/firebase.utils";
+
 import { createContext, useState} from "react";
 
 export const NotesContext = createContext({
@@ -5,7 +7,8 @@ export const NotesContext = createContext({
     setCurrentNotes: () => {},
     addNote: () => {},
     closeNote: () => {},
-    updateNote: () => {}
+    updateNote: () => {},
+    loadUserNotes: () => {}
 })
 
 
@@ -13,25 +16,30 @@ export const NotesContext = createContext({
 export const NotesProvider = ({children}) =>{
 
     const [currentNotes, setCurrentNotes] = useState([])
-    
-    const addNote = (note) =>{
-        setCurrentNotes([...currentNotes, note]);
+
+    const loadUserNotes = async (userId) =>{
+        setCurrentNotes(await loadNotes(userId));
     }
 
-    const updateNote = (updatedNote) => {
+    const addNote = (userId, note) =>{
+        setCurrentNotes([...currentNotes, note]);
+        saveNote(userId, note);
+    }
+
+    const updateNote = (userId, updatedNote) => {
         const updatedCurrentNotes = currentNotes.map((note) => note.noteId === updatedNote.noteId? {...note,...updatedNote} : note)
         setCurrentNotes(updatedCurrentNotes);
+        saveNoteChanges(userId, updatedNote);
     }
 
-    const closeNote = (id) =>{
-        console.log('notes context id', id)
-        console.log(currentNotes);
-        const newCurrentNotes = currentNotes.filter((note) => note.noteId !== id);
-        console.log(newCurrentNotes);
+    const closeNote = (userId, noteId) =>{
+        
+        const newCurrentNotes = currentNotes.filter((note) => note.noteId !== noteId);
         setCurrentNotes(newCurrentNotes);
+        deleteNote(userId, noteId);
     }
 
-    const value = {currentNotes, setCurrentNotes, addNote, closeNote, updateNote};
+    const value = {currentNotes, setCurrentNotes, addNote, closeNote, updateNote, loadUserNotes};
     
     return <NotesContext.Provider value={value}>{children}</NotesContext.Provider>
 }

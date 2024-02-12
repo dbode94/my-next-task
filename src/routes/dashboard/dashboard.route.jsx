@@ -5,25 +5,20 @@ import {v4 as uuidv4} from 'uuid';
 import { useEffect, useContext } from "react";
 import { NotesContext } from "../../context/notes.context";
 import { UserContext } from "../../context/user.context";
-import { loadNotes } from "../../utils/firebase.utils";
 import './dashboard.style.scss';
 
 const Dashboard = () =>{
 
-    const {currentNotes, setCurrentNotes, addNote} = useContext(NotesContext);
+    const {currentNotes, addNote, loadUserNotes} = useContext(NotesContext);
     const {currentUserId} = useContext(UserContext);
 
     useEffect(()=>{
-        // const fetchData = async () =>{
-        //     return await loadNotes(currentUserId)
-        // }
-        // const notes = fetchData();
-        // console.log(notes);
+        loadUserNotes(currentUserId);
     },[])
     
 
     const addNoteHandler = () =>{
-        addNote({
+        addNote(currentUserId,{
             text:'',
             type:'',
             noteId: uuidv4()
