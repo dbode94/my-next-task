@@ -127,7 +127,7 @@ export const saveNoteChanges = async (userId,userNote) =>{
 
 export const deleteNote = async (userId, userNoteId) =>{
   const noteDocRef = doc(db, 'users',userId,'notes', userNoteId);
-  
+
   try {
     await deleteDoc(noteDocRef)
   } catch (error) {

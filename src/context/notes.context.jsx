@@ -8,7 +8,9 @@ export const NotesContext = createContext({
     addNote: () => {},
     closeNote: () => {},
     updateNote: () => {},
-    loadUserNotes: () => {}
+    loadUserNotes: () => {},
+    commitNoteChanges: () => {},
+    saveAllChanges: () => {}
 })
 
 
@@ -26,20 +28,26 @@ export const NotesProvider = ({children}) =>{
         saveNote(userId, note);
     }
 
-    const updateNote = (userId, updatedNote) => {
+    const updateNote = (updatedNote) => {
         const updatedCurrentNotes = currentNotes.map((note) => note.noteId === updatedNote.noteId? {...note,...updatedNote} : note)
         setCurrentNotes(updatedCurrentNotes);
+    }
+
+    const commitNoteChanges = (userId, updatedNote) =>{
         saveNoteChanges(userId, updatedNote);
     }
 
-    const closeNote = (userId, noteId) =>{
-        
+    const closeNote = (userId, noteId) =>{        
         const newCurrentNotes = currentNotes.filter((note) => note.noteId !== noteId);
         setCurrentNotes(newCurrentNotes);
         deleteNote(userId, noteId);
     }
 
-    const value = {currentNotes, setCurrentNotes, addNote, closeNote, updateNote, loadUserNotes};
+    const saveAllChanges = (userId) =>{
+        currentNotes.forEach((note) => commitNoteChanges(userId, note));
+    }
+
+    const value = {currentNotes, setCurrentNotes, addNote, closeNote, updateNote, loadUserNotes, commitNoteChanges, saveAllChanges};
     
     return <NotesContext.Provider value={value}>{children}</NotesContext.Provider>
 }

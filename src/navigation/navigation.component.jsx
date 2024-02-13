@@ -1,11 +1,11 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+
 import { UserContext } from '../context/user.context';
+import { NotesContext } from '../context/notes.context';
 
 import { ReactComponent as LightTheme } from '../assets/sun-svgrepo-com.svg';
 import { ReactComponent as DarkTheme } from '../assets/moon-svgrepo-com.svg';
-
-import { signUserOut } from '../utils/firebase.utils';
 
 import logo from '../assets/icons8-note-96.png'
 import './navigation.style.scss';
@@ -14,7 +14,8 @@ import './navigation.style.scss';
 const Navigation = () =>{
 
     const navigate = useNavigate();
-    const {currentUser, setCurrentUser,IslightTheme, setIsLightTheme} = useContext(UserContext);
+    const {currentUser, currentUserId,IslightTheme, setIsLightTheme, logUserOut} = useContext(UserContext);
+    const {saveAllChanges} = useContext(NotesContext);
     const [isLargeScreen, setIsLargeScreen] = useState(window.matchMedia("(min-width: 650px)").matches);
 
     const changeHandler = (event) =>{
@@ -42,12 +43,9 @@ const Navigation = () =>{
         }
     }
 
-    const singoutHandler = () =>{
-        signUserOut()
-            .then( () =>{
-                setCurrentUser('');              
-            })
-            .catch((err) => console.log(err.message));
+    const singoutHandler = async () =>{
+        await saveAllChanges(currentUserId);
+        await logUserOut();        
         navigate('/');
     }
 
