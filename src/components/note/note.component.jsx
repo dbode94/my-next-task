@@ -1,6 +1,6 @@
 import OptionPanel from './optionPanel/optionPanel.component';
 
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import { NotesContext } from '../../context/notes.context';
 import { UserContext } from '../../context/user.context';
@@ -15,6 +15,9 @@ const Note = (note) =>{
     const {closeNote, updateNote, commitNoteChanges} = useContext(NotesContext)
     const {currentUserId} = useContext(UserContext);
 
+    useEffect(()=>{
+        setHasBeenChanged(false);
+    },[])
     const changeHandler = async (event) =>{
         const newText = event.target.value;
         await setCurrentText(newText);
