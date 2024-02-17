@@ -29,7 +29,7 @@ export const NotesProvider = ({children}) =>{
     }
 
     const updateNote = (updatedNote) => {
-        const updatedCurrentNotes = currentNotes.map((note) => note.noteId === updatedNote.noteId? {...note,...updatedNote} : note)
+        const updatedCurrentNotes = currentNotes.map((note) => note.noteId === updatedNote.noteId? {...note, ...updatedNote} : note)
         setCurrentNotes(updatedCurrentNotes);
     }
 

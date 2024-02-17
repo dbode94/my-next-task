@@ -21,14 +21,15 @@ const Dashboard = () =>{
         addNote(currentUserId,{
             text:'',
             type:'',
-            noteId: uuidv4()
+            noteId: uuidv4(),
+            color: '#e2e239'
         })
     }
     
     return(
         <div className="dashboard_container">
             {
-                currentNotes? currentNotes.map((note) => <Note type={NOTE_TYPES.TEXT_NOTE} key={note.noteId} text={note.text} {...note}/>) : null
+                currentNotes? currentNotes.map((note) => <Note type={NOTE_TYPES.TEXT_NOTE} key={note.noteId} {...note}/>) : null
             }
             <button className="addNote_button" onClick={addNoteHandler}>+</button>
         </div>

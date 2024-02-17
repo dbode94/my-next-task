@@ -44,7 +44,7 @@ const Navigation = () =>{
     }
 
     const singoutHandler = async () =>{
-        await saveAllChanges(currentUserId);
+        // await saveAllChanges(currentUserId);
         await logUserOut();        
         navigate('/');
     }
