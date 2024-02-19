@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/my-next-task/static/css/main.c721b53d.css",
+    "main.js": "/my-next-task/static/js/main.4e49cfd6.js",
+    "static/js/787.90bc199b.chunk.js": "/my-next-task/static/js/787.90bc199b.chunk.js",
+    "static/media/sun-svgrepo-com.svg": "/my-next-task/static/media/sun-svgrepo-com.010a60eae1f0fe76dfecae8bf6066636.svg",
+    "static/media/moon-svgrepo-com.svg": "/my-next-task/static/media/moon-svgrepo-com.0008a27b0b673c42578a6374c7a28457.svg",
+    "static/media/check-list-notepad-svgrepo-com.svg": "/my-next-task/static/media/check-list-notepad-svgrepo-com.3b0fe36bc0f1e4f6a2048fe9e9739399.svg",
+    "index.html": "/my-next-task/index.html",
+    "static/media/google-icon-logo-svgrepo-com.svg": "/my-next-task/static/media/google-icon-logo-svgrepo-com.eb22daa2332de538a3a78e322b5e6336.svg",
+    "main.c721b53d.css.map": "/my-next-task/static/css/main.c721b53d.css.map",
+    "main.4e49cfd6.js.map": "/my-next-task/static/js/main.4e49cfd6.js.map",
+    "787.90bc199b.chunk.js.map": "/my-next-task/static/js/787.90bc199b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c721b53d.css",
+    "static/js/main.4e49cfd6.js"
+  ]
+}
