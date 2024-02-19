@@ -52,6 +52,20 @@
 
 }
 
+.alertComponent_container{
+    position: absolute;
+    top: 0;
+    left: 0;     
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .lightTheme_style{
     background-image: linear-gradient(135deg, #F0F3FA, #B1C9EF);
 }

@@ -19,7 +19,7 @@ export const UserProvider = ({children}) =>{
     const logUserOut = () =>{
         signUserOut()
             .then( () =>{
-                setCurrentUser('');              
+                setCurrentUser('');
             })
             .catch((err) => console.log(err.message));
     }

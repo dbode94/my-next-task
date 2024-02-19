@@ -6,6 +6,7 @@ import { NotesContext } from '../context/notes.context';
 
 import { ReactComponent as LightTheme } from '../assets/sun-svgrepo-com.svg';
 import { ReactComponent as DarkTheme } from '../assets/moon-svgrepo-com.svg';
+import AlertPrompt from '../components/alertMessage/alertPrompt.component';
 
 import logo from '../assets/icons8-note-96.png'
 import './navigation.style.scss';
@@ -15,7 +16,8 @@ const Navigation = () =>{
 
     const navigate = useNavigate();
     const {currentUser, currentUserId,IslightTheme, setIsLightTheme, logUserOut} = useContext(UserContext);
-    const {saveAllChanges} = useContext(NotesContext);
+    const {lastContextChangeDate, lastDBChangeDate, saveAllChanges} = useContext(NotesContext);
+    const [haveUnsaveChanges, setHaveUnsaveChanges] = useState(false);
 
     useEffect(() => {
         document.body.classList.add('lightTheme_style');
@@ -37,15 +39,31 @@ const Navigation = () =>{
     }
 
     const singoutHandler = async () =>{
-        // await saveAllChanges(currentUserId);
-
-        await logUserOut();        
+        console.log(lastContextChangeDate);
+        console.log(lastDBChangeDate);
+        if(lastContextChangeDate > lastDBChangeDate) setHaveUnsaveChanges(true);
+        else {
+            await logUserOut();        
         navigate('/');
+        }
     }
 
     const options = [
         <div className='contacts_container'>Contacts</div>
     ]
+
+    const acceptedHandler = async () => {
+        await saveAllChanges(currentUserId);
+        setHaveUnsaveChanges(false);
+        await logUserOut();        
+        navigate('/');
+    }
+
+    const declinedHandler = async () => {
+        setHaveUnsaveChanges(false);
+        await logUserOut();        
+        navigate('/');    
+    }
 
     return(
         <Fragment>
@@ -68,6 +86,9 @@ const Navigation = () =>{
                 </div>
             </div>
             <Outlet/>
+            {
+                haveUnsaveChanges && <div className="alertComponent_container"> <AlertPrompt message={'Would you like to save all outstanding changes?'} acceptedHandler={acceptedHandler} declinedHandler={declinedHandler}/></div>
+            }
         </Fragment>
     )
 }

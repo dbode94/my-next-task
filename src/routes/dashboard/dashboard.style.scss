@@ -14,28 +14,23 @@
     box-sizing: border-box;
     overflow: auto;
     background-color: transparent;
-
-    & .alertComponent_container{
-        position: absolute;
-        top: 0;
-        left: 0;     
-        background-color: transparent;
-        width: 100%;
-        height: 100%;
-        backdrop-filter: blur(10px);
-        z-index: 5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
+    
     & .addNote_button{
         position: sticky;
         font-size: 30px;
-        top:93%;
+        top:97%;
         left: 97%;
         border-radius: 50px;
         border: none;
+        width: 35px;
+        background-color: #7bb5d2;
+        color: #B8E0F5;
+        font-weight: 700;
+
+        &:hover{
+            background-image: linear-gradient(150deg, #7bb5d25d, #006dA4);
+            cursor: pointer;
+        }
     }
 }
   

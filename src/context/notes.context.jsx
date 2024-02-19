@@ -40,8 +40,8 @@ export const NotesProvider = ({children}) =>{
         setLastContextChageDate(new Date());
     }
 
-    const commitNoteChanges = (userId, updatedNote) =>{
-        saveNoteChanges(userId, updatedNote);
+    const commitNoteChanges = async (userId, updatedNote) =>{
+        await saveNoteChanges(userId, updatedNote);
         setLastDBChageDate(new Date());
     }
 
