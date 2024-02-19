@@ -10,7 +10,7 @@
     padding: 0px 1%;
     box-shadow: 0 10px 10px gray;
     border-radius: 0px 0px 10px 10px;
-    background-color: #004D74;
+    background-image: linear-gradient(150deg, #7bb5d2, #006dA4);
     z-index: 1000;
 
     & .logAndTheme_Container{
@@ -23,10 +23,11 @@
             height: 40px;
             width: 70px;
             font-family: "Roboto", sans-serif;
-            font-weight: 500;
+            font-weight: 600;
             font-style: normal;
             background-image: linear-gradient(150deg, #7bb5d2, #006dA4);
             margin-left: 10px;
+            color: #B8E0F5;
     
             &:hover{
                 background-image: linear-gradient(150deg, #7bb5d25d, #006dA4);

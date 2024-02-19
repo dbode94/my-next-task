@@ -16,15 +16,8 @@ const Navigation = () =>{
     const navigate = useNavigate();
     const {currentUser, currentUserId,IslightTheme, setIsLightTheme, logUserOut} = useContext(UserContext);
     const {saveAllChanges} = useContext(NotesContext);
-    const [isLargeScreen, setIsLargeScreen] = useState(window.matchMedia("(min-width: 650px)").matches);
-
-    const changeHandler = (event) =>{
-        setIsLargeScreen(event.matches)
-    }
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia("(min-width: 650px)");
-        mediaQuery.addEventListener('change', changeHandler)
         document.body.classList.add('lightTheme_style');
     }, [])
 
@@ -45,6 +38,7 @@ const Navigation = () =>{
 
     const singoutHandler = async () =>{
         // await saveAllChanges(currentUserId);
+
         await logUserOut();        
         navigate('/');
     }
@@ -58,9 +52,6 @@ const Navigation = () =>{
             <div className='navigation_bar'>
                 <div className='logo_container'>
                     <img src={logo} alt="noteLogo" className='logo'/>
-                    {
-                        isLargeScreen && <h3 className='logoName_header'>My-Next-Task</h3>  
-                    }
                 </div>
                 <div className='option_container'>
                     {

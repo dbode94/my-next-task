@@ -18,6 +18,7 @@ const Note = (note) =>{
     useEffect(()=>{
         setHasBeenChanged(false);
     },[])
+    
     const changeHandler = async (event) =>{
         const newText = event.target.value;
         await setCurrentText(newText);
