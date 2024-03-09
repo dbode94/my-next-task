@@ -8,6 +8,8 @@ import { ReactComponent as LightTheme } from '../assets/sun-svgrepo-com.svg';
 import { ReactComponent as DarkTheme } from '../assets/moon-svgrepo-com.svg';
 import AlertPrompt from '../components/alertMessage/alertPrompt.component';
 import SearchConnection from './searchConnection/searchConnection.component';
+import UserButton from './userButton/userButton.Component';
+import UserOptionDropbox from './userButton/userOptionDropbox/userOptionDropBox.component';
 
 import logo from '../assets/icons8-note-96.png'
 import './navigation.style.scss';
@@ -19,6 +21,7 @@ const Navigation = () =>{
     const {currentUser, currentUserId,IslightTheme, setIsLightTheme, logUserOut} = useContext(UserContext);
     const {lastContextChangeDate, lastDBChangeDate, saveAllChanges} = useContext(NotesContext);
     const [haveUnsaveChanges, setHaveUnsaveChanges] = useState(false);
+    const [userDropboxIsOpen, setUserDropboxIsOpen] = useState(false);
 
     useEffect(() => {
         document.body.classList.add('lightTheme_style');
@@ -49,10 +52,6 @@ const Navigation = () =>{
         }
     }
 
-    const options = [
-        <SearchConnection/>
-    ]
-
     const acceptedHandler = async () => {
         await saveAllChanges(currentUserId);
         setHaveUnsaveChanges(false);
@@ -66,25 +65,21 @@ const Navigation = () =>{
         navigate('/');    
     }
 
+    const toggleUserDropboxHandler = () => setUserDropboxIsOpen(!userDropboxIsOpen);
+
     return(
         <Fragment>
             <div className='navigation_bar'>
                 <div className='logo_container'>
                     <img src={logo} alt="noteLogo" className='logo'/>
                 </div>
-                <div className='option_container'>
-                    {
-                        currentUser? options : null
-                    }
-                </div>
-                <div className='logAndTheme_Container'>
-                    {
-                        IslightTheme? <LightTheme onClick={themeHandler}/> : <DarkTheme onClick={themeHandler}/>
-                    }
-                    {
-                        currentUser? <button className='log_button' onClick={singoutHandler}>Log out</button> : null
-                    }                 
-                </div>
+                <SearchConnection/>
+                {
+                    currentUser? <UserButton toggleUserDropboxHandler={toggleUserDropboxHandler}/> : null
+                }
+                {
+                    userDropboxIsOpen && currentUser? <UserOptionDropbox singoutHandler={singoutHandler} themeHandler={themeHandler}/> : null
+                }               
             </div>
             <Outlet/>
             {

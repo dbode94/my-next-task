@@ -13,38 +13,6 @@
     background-image: linear-gradient(150deg, #7bb5d2, #006dA4);
     z-index: 1000;
 
-    & .option_container{
-        height: 40px;
-    }
-
-    & .logAndTheme_Container{
-        display: flex;
-        justify-content: space-between;
-
-        & .log_button{
-            border: none;
-            border-radius: 5px;
-            height: 40px;
-            width: 70px;
-            font-family: "Roboto", sans-serif;
-            font-weight: 600;
-            font-style: normal;
-            background-image: linear-gradient(150deg, #7bb5d2, #006dA4);
-            margin-left: 10px;
-            color: #B8E0F5;
-    
-            &:hover{
-                background-image: linear-gradient(150deg, #7bb5d25d, #006dA4);
-                cursor: pointer;
-            }
-            
-            @media(pointer: coarse){
-                margin-right: 5px;
-            }
-        }
-    }
-
- 
     & .logo_container{
         display: flex;
 

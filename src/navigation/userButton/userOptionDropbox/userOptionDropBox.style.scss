@@ -1,0 +1,35 @@
+.userOptions_container{
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 150px;
+    border-radius: 10px 0px 10px 10px;
+    font-size: 12px;
+
+    & div{
+        border: none;
+        background-color: transparent;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        
+        & .opions_svg{
+            width: 20px;
+            height: 20px;
+        }
+
+       @media(pointer: fine){
+        &:hover{
+            background-color: rgb(230, 230, 230);
+            cursor: pointer;
+        }
+       }
+    }
+}

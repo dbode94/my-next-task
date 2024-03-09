@@ -12,6 +12,10 @@
         background-color: transparent;
         width: 250px;
 
+        @media(pointer: coarse){
+            width: 190px;    
+        }
+
         &:focus{
             outline: none;
         }
