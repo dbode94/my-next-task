@@ -2,7 +2,8 @@ import OptionPanel from './optionPanel/optionPanel.component';
 
 import { useState, useContext, useEffect } from 'react';
 
-import {ReactComponent as ShareLogo} from '../../assets/share-svgrepo-com.svg'
+import {ReactComponent as ShareIcon} from '../../assets/share-svgrepo-com.svg'
+import {ReactComponent as SaveIcon} from '../../assets/save-svgrepo-com.svg'
 import { NotesContext } from '../../context/notes.context';
 import { UserContext } from '../../context/user.context';
 
@@ -49,10 +50,10 @@ const Note = (note) =>{
         <div className='note_container' style={{backgroundImage: `linear-gradient(135deg, rgb(255, 255, 255), ${color}`}}>
             <div className='note_bar'>
                 {
-                    hasBeenChanged? <button className='saveChanges_note' onClick={saveHandler}>Save</button> : <div></div>
+                    hasBeenChanged? <button className='saveChanges_note' onClick={saveHandler}><SaveIcon/></button> : <div></div>
                 }
                 <div className='barButtons_container'>
-                    <button className='share_button'><ShareLogo className='share_svg'/></button>    
+                    <button className='share_button'><ShareIcon className='share_svg'/></button>    
                     <button onClick={optionHandler}>...</button>
                     <button onClick={closingHandler}>x</button>
                 </div>
