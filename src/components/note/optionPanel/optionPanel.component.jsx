@@ -51,9 +51,6 @@ const OptionPanel = ({note, hide, optionChangeHandler}) =>{
                     }                
                 </div>
             </div>
-            <div className='otherOptions_container'>
-                <button className='share_button'>Share</button>
-            </div>
         </div>
     );
 }

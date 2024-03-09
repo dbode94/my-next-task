@@ -6,15 +6,14 @@
     backdrop-filter: blur(6px);
     top: 100%;
     transition: top 0.3s ease-in-out;
+    display: grid;
+    place-items: center;
 
     & h6{
         margin-bottom: 5px;
         color: rgb(110, 110, 110);
     }
 
-    & .colorOptions_container, .otherOptions_container{
-        padding-left: 10px;
-    }
 
     & .presetColors_container{
         display: flex;
@@ -31,27 +30,10 @@
             clip-path: circle(15px at center);
         }
     }
-
-    & .otherOptions_container{
-        display:flex ;
-        justify-content: end;
-        align-items: end;
-       
-
-        & .share_button{
-            font-family: "Roboto", sans-serif;
-            font-weight: 600;
-            font-style: normal;
-            color: gray;
-            padding: 5px;
-            border: none;
-        }
-    }
-   
 }
 
 .slideToTop{
-    top: 30px;
+    top: 50px;
 }
 
 

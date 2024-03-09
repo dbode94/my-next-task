@@ -1,0 +1,23 @@
+.search_container{
+    height: 100%;
+    display: flex;
+    gap: 5px;
+    height: 30px;
+    padding: 5px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+
+    & .search_input{
+        border: none;
+        background-color: transparent;
+        width: 250px;
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    & .mag_svg{
+        width: 40px;
+    }
+}

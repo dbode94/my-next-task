@@ -7,6 +7,7 @@ import { NotesContext } from '../context/notes.context';
 import { ReactComponent as LightTheme } from '../assets/sun-svgrepo-com.svg';
 import { ReactComponent as DarkTheme } from '../assets/moon-svgrepo-com.svg';
 import AlertPrompt from '../components/alertMessage/alertPrompt.component';
+import SearchConnection from './searchConnection/searchConnection.component';
 
 import logo from '../assets/icons8-note-96.png'
 import './navigation.style.scss';
@@ -49,7 +50,7 @@ const Navigation = () =>{
     }
 
     const options = [
-        <div className='contacts_container'>Contacts</div>
+        <SearchConnection/>
     ]
 
     const acceptedHandler = async () => {

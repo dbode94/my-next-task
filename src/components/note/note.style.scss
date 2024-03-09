@@ -36,13 +36,19 @@
             border: none;
             background-color: transparent;
             color: gray;
+            font-size: 16px;
+            font-weight: 700;
 
             &:hover{
                 cursor: pointer;
-                font-weight: 800;
+                filter: drop-shadow(2px 2px 5px rgb(23, 22, 22));
                 color: black;
-                
             }
+        }
+
+        & .share_button{
+            width: 30px;
+            height: 30px;
         }
 
         & .saveChanges_note{
@@ -57,6 +63,7 @@
             &:hover{
                 cursor: pointer;
                 background-color: rgb(120, 249, 61);
+                filter: none;
             }
         }
     }
