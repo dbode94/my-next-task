@@ -30,31 +30,43 @@ export const NotesProvider = ({children}) =>{
     const addNote = (userId, note) =>{
         setCurrentNotes([...currentNotes, note]);
         saveNote(userId, note);
-        setLastContextChageDate(new Date());
-        setLastDBChageDate(lastContextChangeDate);
+        console.log('----------------------------------');
+        const date = new Date();
+        console.log('adding note, updating context date', date)
+        setLastContextChageDate(date);
+        console.log('adding note, updating DB date', date)
+        setLastDBChageDate(date);
     }
 
     const updateNote = (updatedNote) => {
         const updatedCurrentNotes = currentNotes.map((note) => note.noteId === updatedNote.noteId? {...note, ...updatedNote} : note)
         setCurrentNotes(updatedCurrentNotes);
-        setLastContextChageDate(new Date());
+        console.log('----------------------------------');
+        const date = new Date();
+        console.log('updating note, updating context date', date)
+        setLastContextChageDate(date);
     }
 
-    const commitNoteChanges = async (userId, updatedNote) =>{
+    const commitNoteChanges = async (userId, updatedNote) => {
         await saveNoteChanges(userId, updatedNote);
-        setLastDBChageDate(new Date());
+        console.log('----------------------------------');
+        const date = new Date();
+        console.log('commiting note changes, updating DB date', date)
+        setLastDBChageDate(date);
     }
 
     const closeNote = (userId, noteId) =>{        
         const newCurrentNotes = currentNotes.filter((note) => note.noteId !== noteId);
         setCurrentNotes(newCurrentNotes);
         deleteNote(userId, noteId);
-        setLastContextChageDate(new Date());
-        setLastDBChageDate(lastContextChangeDate);
+        const date = new Date();
+        setLastContextChageDate(date);
+        setLastDBChageDate(date);
     }
 
     const saveAllChanges = (userId) =>{
         currentNotes.forEach((note) => commitNoteChanges(userId, note));
+        setLastDBChageDate(new Date());
     }
 
     const value = {currentNotes, setCurrentNotes, addNote, closeNote, updateNote, loadUserNotes, commitNoteChanges, saveAllChanges, lastContextChangeDate, lastDBChangeDate};

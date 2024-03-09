@@ -6,38 +6,52 @@
     backdrop-filter: blur(6px);
     top: 100%;
     transition: top 0.3s ease-in-out;
-    text-align: center;
-
 
     & h6{
         margin-bottom: 5px;
+        color: rgb(110, 110, 110);
+    }
+
+    & .colorOptions_container, .otherOptions_container{
+        padding-left: 10px;
     }
 
     & .presetColors_container{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        flex-wrap: wrap;
+        justify-content: flex-start;
         gap: 5px;
+        margin-bottom: 20px;
         
         & .color_div{
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             border-radius: 2px;
+            clip-path: circle(15px at center);
         }
     }
 
-    & .customColor_input{
-        border: none;
-        background-color: transparent;
-        width: 30px;
-        height: 30px;
+    & .otherOptions_container{
+        display:flex ;
+        justify-content: end;
+        align-items: end;
+       
+
+        & .share_button{
+            font-family: "Roboto", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            color: gray;
+            padding: 5px;
+            border: none;
+        }
     }
-        
    
 }
 
 .slideToTop{
-    top: 20px;
+    top: 30px;
 }
 
 

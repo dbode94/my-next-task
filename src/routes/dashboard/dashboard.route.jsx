@@ -1,6 +1,5 @@
 import Note from "../../components/note/note.component";
 import NOTE_TYPES from "../../components/note/NOTE_TYPES";
-import AlertPrompt from "../../components/alertMessage/alertPrompt.component";
 
 import {v4 as uuidv4} from 'uuid';
 import { useEffect, useContext } from "react";
@@ -10,7 +9,7 @@ import './dashboard.style.scss';
 
 const Dashboard = () =>{
 
-    const {currentNotes, addNote, loadUserNotes, saveAllChanges} = useContext(NotesContext);
+    const {currentNotes, addNote, loadUserNotes} = useContext(NotesContext);
     const {currentUserId} = useContext(UserContext);
 
     useEffect(()=>{
@@ -23,7 +22,7 @@ const Dashboard = () =>{
             text:'',
             type:'',
             noteId: uuidv4(),
-            color: '#e2e239'
+            color: '#e2e239',
         })
     }
 

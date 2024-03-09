@@ -1,12 +1,11 @@
 .note_container{
-  
-    
     box-shadow: 8px 8px 8px lightgray;
     border-bottom: 0.5px solid darkgray;
     border-right: 0.5px solid darkgray;
     padding: 2px 2px 0 2px;
     border-radius: 5px;
     min-height: 200px;
+    min-width: 180px;
     z-index: 1;
     margin-bottom: 20px;
     contain: content;
@@ -16,6 +15,8 @@
         flex-direction: row;
         justify-content: space-between;
         margin: 0 10px 10px 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         z-index: 1;
         border-bottom: 0.5px solid lightgray;
         
@@ -38,13 +39,31 @@
 
             &:hover{
                 cursor: pointer;
-                background-color: rgba(255, 255, 0, 0.624);
+                font-weight: 800;
+                color: black;
+                
+            }
+        }
+
+        & .saveChanges_note{
+            background-color: rgb(148, 252, 99);
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+
+
+            &:hover{
+                cursor: pointer;
+                background-color: rgb(120, 249, 61);
             }
         }
     }
 
     & .note_input{
         min-height: 200px;
+        min-width: 180px;
         border: none;
         background-color: transparent;
         font-size: large;

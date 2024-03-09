@@ -13,8 +13,10 @@ const OptionPanel = ({note, hide, optionChangeHandler}) =>{
     const presetColors = new Map ([
     ['green' , '#0cea7f'],
     ['yellow' , "#e2e239"],
-    ['red' , '#da4130'],
-    ['blue' , "#1d7fd0"]
+    ['red' , '#da4130'], 
+    ['blue' , "#4290f0"],
+    ['light' , "#bfbfbf"],
+    ['dark' , "#302f2f"]
     ])
 
     useEffect(()=> {
@@ -24,13 +26,6 @@ const OptionPanel = ({note, hide, optionChangeHandler}) =>{
         }
         setPresetColorDivArray(divArray);
     }, [])
-    
-    // triggers when the input color has been changed
-    useEffect(()=> {
-        optionChangeHandler();
-        const updatedNote = {...note, color: inputColor};
-        updateNote(updatedNote)
-    },[inputColor])
 
     useEffect(()=> {
         console.log(hide)
@@ -39,25 +34,25 @@ const OptionPanel = ({note, hide, optionChangeHandler}) =>{
     },[hide])
 
     const presetColorSelectHandler = (event) => {
-        setInputColor(presetColors.get(event.target.id))
+        const newColor = presetColors.get(event.target.id);
+        setInputColor(newColor);
+        optionChangeHandler();
+        const updatedNote = {...note, color: newColor};
+        updateNote(updatedNote)
     }
-
-    const customColorSelectHandler = (event) =>{
-        setInputColor(event.target.value);
-    }
-
 
     return (
         <div className={`noteOption_container ${animationClassName}`}>
-            <h6>Select a color for your note:</h6>
-            <div className='presetColors_container'>
-                {
-                    presetColorDivsArray.map((div) => div)
-                }                
+            <div className='colorOptions_container'>
+                <h6>Color:</h6>
+                <div className='presetColors_container'>
+                    {
+                        presetColorDivsArray.map((div) => div)
+                    }                
+                </div>
             </div>
-            <div className='customColor_container'>
-                <h6>Custom color:</h6>
-                <input type="color" className='customColor_input' onChange={customColorSelectHandler} value={inputColor}/>
+            <div className='otherOptions_container'>
+                <button className='share_button'>Share</button>
             </div>
         </div>
     );
