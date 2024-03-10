@@ -9,7 +9,7 @@ import { ReactComponent as DarkTheme } from '../assets/moon-svgrepo-com.svg';
 import AlertPrompt from '../components/alertMessage/alertPrompt.component';
 import SearchConnection from './searchConnection/searchConnection.component';
 import UserButton from './userButton/userButton.Component';
-import UserOptionDropbox from './userButton/userOptionDropbox/userOptionDropBox.component';
+import UserOptionDropbox from './userOptionDropbox/userOptionDropBox.component';
 
 import logo from '../assets/icons8-note-96.png'
 import './navigation.style.scss';
@@ -65,12 +65,41 @@ const Navigation = () =>{
         navigate('/');    
     }
 
+    const navigateToSettingsHandler = () => {
+        navigate('/controlPanel/settings');
+        if(userDropboxIsOpen) toggleUserDropboxHandler();  
+    }
+
+    const navigateToAccountHandler = () => {
+        navigate('/controlPanel/account');
+        if(userDropboxIsOpen) toggleUserDropboxHandler();  
+    }
+
+    const navigateToConnectionsHandler = () => {
+        navigate('/controlPanel/connections');
+        if(userDropboxIsOpen) toggleUserDropboxHandler();  
+    }
+
+    const navigateToDashboardHandler = () => {
+        navigate('/dashboard');
+        if(userDropboxIsOpen) toggleUserDropboxHandler();       
+    }
+
     const toggleUserDropboxHandler = () => setUserDropboxIsOpen(!userDropboxIsOpen);
 
+    const handlers = {
+        navigateToDashboard: navigateToDashboardHandler,
+        navigateToSettings: navigateToSettingsHandler, 
+        navigateToAccount: navigateToAccountHandler,
+        navigateToConnections: navigateToConnectionsHandler,
+        singoutHandler: singoutHandler, 
+        themeHandler: themeHandler
+    }
+    
     return(
         <Fragment>
             <div className='navigation_bar'>
-                <div className='logo_container'>
+                <div className='logo_container' onClick={navigateToDashboardHandler}>
                     <img src={logo} alt="noteLogo" className='logo'/>
                 </div>
                 <SearchConnection/>
@@ -78,7 +107,7 @@ const Navigation = () =>{
                     currentUser? <UserButton toggleUserDropboxHandler={toggleUserDropboxHandler}/> : null
                 }
                 {
-                    userDropboxIsOpen && currentUser? <UserOptionDropbox singoutHandler={singoutHandler} themeHandler={themeHandler}/> : null
+                    userDropboxIsOpen && currentUser? <UserOptionDropbox actionHandlers={handlers}/> : null
                 }               
             </div>
             <Outlet/>
