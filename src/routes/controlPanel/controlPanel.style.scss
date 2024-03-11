@@ -4,17 +4,18 @@
     justify-content: space-evenly;
     border-radius: 10px;
     padding: 10px;
-    background-color: whitesmoke;
-    min-height: 200px;
-    width: 430px;
+    min-height: 400px;
+    min-width: 390px;
 
     & .controlPanel_tabs{
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: start;
-        padding: 10px;
+        padding: 15px ;
         width: 150px;
+        background-color: whitesmoke;
+        border-radius: 10px 0px 0px 10px;
 
         & .tab{
             display: flex;
@@ -44,8 +45,9 @@
     }
 
     & .tab_page{
-        padding: 10px;
+        padding: 10px 10px 10px 20px;
         width: 250px;
-
+        background-color: rgb(255, 255, 255);
+        border-radius: 0px 10px 10px 0px;
     }
 }

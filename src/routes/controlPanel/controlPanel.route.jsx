@@ -21,7 +21,7 @@ const ControlPanel = () => {
                 <Link className='tab connections' to={'./connections'}> <ConnectionsIcon className='controlTabs_svg'/> Connections </Link>
                 <Link className='tab settings' to={'./settings'}><SettingsIcon className='controlTabs_svg'/> Settings</Link>
             </div>
-            <hr />
+            {/* <hr /> */}
             <div className='tab_page'>
                 <Outlet/>
             </div>

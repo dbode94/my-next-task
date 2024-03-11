@@ -66,17 +66,17 @@ const Navigation = () =>{
     }
 
     const navigateToSettingsHandler = () => {
-        navigate('/controlPanel/settings');
+        navigate('/control_panel/settings');
         if(userDropboxIsOpen) toggleUserDropboxHandler();  
     }
 
     const navigateToAccountHandler = () => {
-        navigate('/controlPanel/account');
+        navigate('/control_panel/account');
         if(userDropboxIsOpen) toggleUserDropboxHandler();  
     }
 
     const navigateToConnectionsHandler = () => {
-        navigate('/controlPanel/connections');
+        navigate('/control_panel/connections');
         if(userDropboxIsOpen) toggleUserDropboxHandler();  
     }
 

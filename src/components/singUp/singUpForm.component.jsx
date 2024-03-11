@@ -27,9 +27,8 @@ const SingUpForm = () =>{
         const user = await registerNewUser(formValues.displayName, formValues.email, formValues.password, {IslightTheme});
 
         if(user){
-            setCurrentUser(displayName);
+            setCurrentUser(user);
             setCurrentUserId(user.uid)
-            console.log(user.uid)
             navigate('dashboard')
         }
 

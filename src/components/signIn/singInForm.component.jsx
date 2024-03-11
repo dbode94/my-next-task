@@ -29,7 +29,7 @@ const SingInForm = () => {
 
         regularSignIn(formValues.email,formValues.password)
             .then((user) => {
-                setCurrentUser(user.displayName)
+                setCurrentUser(user)
                 setCurrentUserId(user.uid);
                 //TODO: Get the preference from the fireStore, it might be a returning with set preferences.
                 navigate('/dashboard')
@@ -53,7 +53,7 @@ const SingInForm = () => {
         const user = await singInWithGooglePopOut({IslightTheme});
 
         if(user){
-            setCurrentUser(user.displayName)
+            setCurrentUser(user)
             setCurrentUserId(user.uid);
             //TODO: Get the preference from the fireStore, it might be a returning with set preferences.
             navigate('/dashboard');

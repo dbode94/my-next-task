@@ -46,7 +46,7 @@ export const registerNewUser = (displayName, email, password, additionalInformat
   return createUserWithEmailAndPassword(auth, email,password)
     .then(async ({user}) =>{
       await createUserDocument(user.uid, displayName, email, additionalInformatinon)
-      return user;
+      return {...user, displayName:displayName};
     })
     .catch((err) => console.log('error handled', err.message))
 }
@@ -67,7 +67,16 @@ const createUserDocument = async (userID, displayName, email, additionalInformat
 }
 
 //Helper function for signing in with email and password
-export const regularSignIn = async (email, password) => await signInWithEmailAndPassword(auth, email, password);
+export const regularSignIn = async (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password)
+    .then( async ({user}) => {
+      const userDocRef = doc(db,'users',user.uid);
+      const userDocSnapshot = await getDoc(userDocRef);
+      const completeUser = {...user, displayName: userDocSnapshot.data().displayName};
+      return completeUser;
+    })
+    .catch((err) => console.log(err.message))
+}
 
 //Helper function for singing in the user using Google Popout
 export const singInWithGooglePopOut = async (additionalinformation = {}) =>{
