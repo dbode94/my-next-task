@@ -19,6 +19,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider
 } from 'firebase/auth'
 
 
@@ -86,6 +89,23 @@ export const singInWithGooglePopOut = async (additionalinformation = {}) =>{
       return user;
     })
     .catch((err) => console.log(err.message))
+}
+
+//Helper function for updating logged user's password
+export const updateUserPassword = async (oldPassword, newPassword) => {
+  const user = auth.currentUser;
+  const credential = EmailAuthProvider.credential(user.email, oldPassword);
+
+  console.log(credential);
+
+  reauthenticateWithCredential(user, credential)
+    .then(() => {
+      return updatePassword(user, newPassword)
+        .then(() => console.log('password updated'))
+        .catch((err) => err)
+    })
+    .catch((err) => err)
+  
 }
 
 //helper function for loging out the user

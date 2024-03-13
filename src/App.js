@@ -6,26 +6,31 @@ import Account from './routes/account/account.route';
 import Connections from './routes/connections/connections.route';
 import Settings from './routes/settings/settings.route';
 import UpdatePasswordForm from './routes/updatePasswordForm/updatePasswordForm.route';
+import { ToastContainer} from 'react-toastify';
 
 import { Routes, Route } from 'react-router-dom';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {
 
   return (
-    <Routes>
-      <Route index element={<Authentication/>}/>
-      <Route path='/' element={<Navigation/>}>
-        <Route path='dashboard'element={<Dashboard/>}/>
-        <Route path='control_panel'element={<ControlPanel/>}>
-          <Route path='account' element={<Account/>}/> 
-          <Route path='connections' element={<Connections/>}/>
-          <Route path='settings' element={<Settings/>}/>
+    <div>
+      <Routes>
+        <Route index element={<Authentication/>}/>
+        <Route path='/' element={<Navigation/>}>
+          <Route path='dashboard'element={<Dashboard/>}/>
+          <Route path='control_panel'element={<ControlPanel/>}>
+            <Route path='account' element={<Account/>}/> 
+            <Route path='connections' element={<Connections/>}/>
+            <Route path='settings' element={<Settings/>}/>
+          </Route>
+          <Route path='update_password' element={<UpdatePasswordForm/>}/>
         </Route>
-        <Route path='update_password' element={<UpdatePasswordForm/>}/>
-      </Route>
-    </Routes>
+      </Routes>
+      <ToastContainer position='top-center' autoClose={1000} hideProgressBar={true}/>
+    </div>
   );
 }
 

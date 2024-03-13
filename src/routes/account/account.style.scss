@@ -1,19 +1,26 @@
-.accountInfo_container{
-    
-    & .info_container{
+.accountPage_container{
+    height: 100%;
+    & .accountInfo_container{
+        height: 60%;
         display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 10px;
-        padding: 15px 0px;
-
-        & .info_title{
-            font-size: 14px;;
-            font-weight: bold;
+        flex-direction: column;
+        justify-content: center;
+        
+        & .info_container{
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 10px;
+            padding: 15px 0px;
+    
+            & .info_title{
+                font-size: 14px;;
+                font-weight: bold;
+            }
         }
-    }
-
-    & .passwordInfo_container .passwordReset_anchor{
-        font-size: 12px;
+    
+        & .passwordInfo_container .passwordReset_anchor{
+            font-size: 12px;
+        }
     }
 }
